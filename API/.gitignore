@@ -48,3 +48,8 @@ Thumbs.db
 # Coverage directory used by tools like istanbul
 coverage/
 
+# JWT_SECRET=nitesh11
+# JWT_EXPIRES_IN=1d
+# PORT=3000
+# # MONGODB_URI=mongodb://localhost:27017
+# MONGODB_URI=mongodb+srv://niteshdk11:niteshdk11@cluster0.tlria.mongodb.net
