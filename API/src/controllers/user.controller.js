@@ -5,18 +5,18 @@ import jwt from "jsonwebtoken";
 
 export const registerUser = async (req, res) => {
   try {
-    const { username, email, fullName, password } = req.body;
+    const { email, fullName, password } = req.body;
 
-    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+    const existingUser = await User.findOne({ $or: [{ email }] });
     if (existingUser) {
       return res.status(400).json({
         success: false,
         message:
-          "A user with this email or username already exists. Please use a different email or username.",
+          "A user with this email  already exists. Please use a different email .",
       });
     }
 
-    const user = new User({ username, email, password, fullName });
+    const user = new User({  email, password, fullName });
     await user.save();
 
     return res.status(201).json({
@@ -66,6 +66,7 @@ export const loginUser = async (req, res) => {
       message: "Login successful",
       success: true,
       token,
+      user:user
     });
   } catch (error) {
     console.error(error);
@@ -75,7 +76,7 @@ export const loginUser = async (req, res) => {
 
 export const editUser = async (req, res) => {
   try {
-    const { fullName, username, email } = req.body;
+    const { fullName, email } = req.body;
 
     const user = await User.findById(req.user._id);
     if (!user) {
@@ -88,10 +89,6 @@ export const editUser = async (req, res) => {
 
     if (fullName) {
       user.fullName = fullName;
-      updated = true;
-    }
-    if (username) {
-      user.username = username;
       updated = true;
     }
     if (email) {
