@@ -43,6 +43,7 @@ export const createTaskSchedule = async (req, res) => {
     }
 
     booking.taskSchedule = taskSchedule._id;
+    booking.status = "scheduled";
     await booking.save();
     
     res.status(201).json({

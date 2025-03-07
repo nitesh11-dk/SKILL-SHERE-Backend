@@ -56,7 +56,7 @@
         },
       status: {
         type: String,
-        enum: ["pending", "accepted", "rejected", "completed"],
+        enum: ["pending", "accepted", "rejected", "completed","scheduled"],
         default: "pending",
       },
       isBarterExchange: {
